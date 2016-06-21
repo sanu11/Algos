@@ -1,0 +1,92 @@
+//dequeue costly or enqueue efficient
+#include<bits/stdc++.h>
+using namespace std;
+class node
+{
+	public:
+		static node *top,*top1;
+		int data;
+		node *np;
+		void static insert(int x);
+		void static delet();
+		void static print();
+		void static transfer();
+		int static pop();		
+}*head,*head1; 
+
+node* node::top=NULL;
+node* node::top1=NULL;
+
+void node::insert(int x)
+{
+	
+	node *q=new node;
+	q->data=x;
+	q->np=NULL;
+
+	if(top==NULL)
+	{
+		top=q;
+		head=top;
+	}
+	else
+	{
+		top->np=q;
+		top=q;
+	}
+}
+void node::transfer()
+{
+node *p=top;
+node *q=top1;
+while()
+
+
+}
+void node ::delet()
+{
+
+	if(top1==NULL)
+		transfer();
+	int x=pop();
+	cout<<"Popped value is "<<x<<endl;
+
+}
+void node::print()
+{
+	node *p=head;
+	while(p->np!=NULL)
+	{
+		cout<<p->data<< "->";
+		p=p->np;
+	}
+	cout<<p->data<<endl;
+	cout<<endl;
+}
+
+int main()
+{
+	int n,x;
+	while(true)
+	{
+		cout<<"\n1.Enqueue\n2.Dequeue\n3.Exit";
+		cin>>n;
+
+		if(n==1)
+		{
+			cin>>x;
+			node::insert(x);
+			node::print();
+		}
+		else if(n==2)
+		{
+			node::delet();
+			node::print();
+		}
+		else if(n==3)
+			break;
+		else
+			cout<<"Enter Correct Option"<<endl;
+	}
+	return 0;
+}

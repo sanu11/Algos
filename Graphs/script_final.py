@@ -1,0 +1,1 @@
+docker run -it -m 10m --cpu-set 0 base_image
