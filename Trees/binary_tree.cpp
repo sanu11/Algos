@@ -10,6 +10,10 @@ class node
 		static void delet (int x);
 		static void search(int x);
 		static void print();
+		static  bool  sum(node*,int,int);
+		// static int height(node*);
+		// static void sum(node*,int);
+		static int height(node *);
 }*root;
 
 class qnode
@@ -41,6 +45,13 @@ void qnode::enqueue(node *x)
 
 }
 
+int node::height(node *p)
+{
+	if(p==NULL)
+		return 0;
+	return 1+ max(height(p->left),height(p->right));
+
+}
 node* qnode::peek()
 {
 	qnode *p=front;
@@ -77,6 +88,19 @@ void node::insert(int x)
 	}
 }
 
+bool node::sum(node* p,int add,int value)
+{
+
+	if(p==NULL)
+		return false;
+	add+=p->data;
+	// cout<<add<<" "<<value<<endl;
+	if(add==value)
+		return true;
+	return sum(p->left,add,value)||sum(p->right,add,value)||sum(p->left,0,value)||sum(p->right,0,value);
+
+}
+
 void node::print()
 {
 	front=NULL;
@@ -110,16 +134,25 @@ void node::print()
 
 }
 
+// int node::height(node *p)
+// {
+
+// 	if(p==NULL)
+// 		return;
+// 	return 1 + max(height(p->left),height(p->right));
+
+// }
+
 int main()
 {
 	root=NULL;
 	front=NULL;
 	rear=NULL;
 	
-	int x,n,flag=0;
+	int value,x,n,flag=0;
 	while(1)
 	{
-		cout<<"1.Insert\n2.Print\n3.Exit\n";
+		cout<<"1.Insert\n2.Print\n3.Height\n4.Check for value\n5.Exit\n";
 		cin>>n;
 		switch(n)
 		{
@@ -132,6 +165,16 @@ int main()
 				node::print();
 				break;
 			case 3:
+				cout<<node::height(root)<<endl;
+				break;
+			case 4:
+				cin>>value;
+				if(node::sum(root,0,value))
+					cout<<"YES\n";
+				else
+					cout<<"NO\n";
+				break;
+			case 5:
 				flag=1;
 				break;
 			default:

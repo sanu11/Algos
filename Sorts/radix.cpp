@@ -2,8 +2,6 @@
 using namespace std;
 void count(int a[],int n,int exp)
 {
-
-
 	//count of every number;
 	int c[10]={0};
 	for(int i=1;i<=n;i++)

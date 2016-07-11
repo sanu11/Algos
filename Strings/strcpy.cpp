@@ -7,7 +7,7 @@ char a[100];
 cout<<"Enter string\n";
 cin>>a;
 int n=strlen(a);
-char b[n+1];
+char *b;
 strcopy(b,a);
 cout<<"Source String is "<<a<< " \nCopied String is "<<b<<"\n";
 return 0;

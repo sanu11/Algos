@@ -10,7 +10,9 @@ cout<<"Enter string to be concatenated\n";
 cin>>b;
 int n=strlen(a);
 char *p=a+n;
+// cout<<strlen(a);
 strccat(p,b);
+// cout<<strlen(a);
 cout<<"concatenated String is \n";
 cout<<a<<endl;	
 }

@@ -24,6 +24,7 @@ int main()
 
 	//stable coz of reverse traverse
 	//element in proper position
+
 	for(int i=n;i>=1;i--)
 	{
 		b[c[a[i]]]=a[i];

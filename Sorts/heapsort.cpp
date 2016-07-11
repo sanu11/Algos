@@ -19,11 +19,14 @@ void heapify(int a[],int i)
 		heapify(a,largest);
 	}
 }
+
 void buildmaxheap(int a[],int n)
 {
+	
 	heapsize=n;	
 	for(int i=n/2;i>=1;i--)
 		heapify(a,i);
+
 }
 void sort(int a[],int n)
 {

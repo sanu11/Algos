@@ -119,6 +119,7 @@ avl_node *avlTree::insert(avl_node *root, int value)
     }
     return root;
 }
+
 void avlTree::inorder(avl_node *tree)
 {
     if (tree == NULL)
@@ -127,6 +128,7 @@ void avlTree::inorder(avl_node *tree)
     cout<<tree->data<<"  ";
     inorder (tree->right);
 }
+
  void avlTree::display(avl_node *ptr, int level)
 {
     int i;

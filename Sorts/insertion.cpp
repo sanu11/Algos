@@ -1,10 +1,11 @@
-//initially 1 elemnent to left and rest elements to right.. take first element from right array put in proper 
+//initially 1 element to left and rest elements to right.. take first element from right array put in proper 
 //posiiton in left array .. keep on doing till right array ends and left array fills completely 
 
 #include<bits/stdc++.h>
 using namespace std;
 int main()
 {
+	
 int n,temp,j;
 cin>>n;
 int a[n];

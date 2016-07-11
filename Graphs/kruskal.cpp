@@ -71,15 +71,13 @@ int main(int argc, char const *argv[])
 		e++;
 		x=find(p);
 		y=find(q);
-		if(x==y)
-			continue;
-		else
+		if(x!=y)
 		{
 			uni(x,y);
 			cout<<"Edge "<<p<<" "<<q<<" added to MST\n";
 			sum+=a[p][q];
-			a[p][q]=999;
 		}
+		a[p][q]=999;
 
 	}
 	cout<<"Cost of MST is "<<sum<<endl;;

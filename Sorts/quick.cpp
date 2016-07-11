@@ -22,6 +22,7 @@ int partition(int a[],int low,int high)
 
 void quicksort(int a[],int low,int high)
 {
+
 	int pivot;	
 	if(low<high)
 	{
@@ -29,6 +30,7 @@ void quicksort(int a[],int low,int high)
 		quicksort(a,low,pivot-1);
 		quicksort(a,pivot+1,high);
 	}
+
 }
 
 int main(int argc, char const *argv[])
