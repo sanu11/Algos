@@ -1,0 +1,8 @@
+//int to char*
+	sprintf(temp,"%d",i);
+//char c (a-z)to int x using ascii
+	x=c-'a';
+//char c (A-Z) to int x using ascii
+	x=c-'A'; 
+	
+

@@ -5,8 +5,14 @@ class node
 	int data;
 	node *left;
 	node *right;
+	int height;
+	node()
+	{
+		height=0;
+	}
 	public:
-		static void insert(node* ,int);
+		static int insert(node* ,int,int);
+		static void insert1(int);
 		static node* find(node*,int);
 		static void delet(int x);
 		static int  search(node*,int);
@@ -16,16 +22,29 @@ class node
 		
 }*root;
 
+void node::insert1(int x)
+{
+	int h=insert(root,x,-1);
+	// cout<<h<<endl;
+	// if(h>root->height)
+	// root->height=h;
 
-void node::insert(node *p , int x)
+}
+
+
+int node::insert(node *p , int x,int c)
 {
 
 	node *q=new node;
 	q->data=x;
 	q->left=NULL;
 	q->right=NULL;
+	c++;
 	if(root==NULL)
+	{
 		root=q;	
+		return c;
+	}
 
 	else
 	{
@@ -33,20 +52,43 @@ void node::insert(node *p , int x)
 		if(x==p->data)
 		{
 			cout<<"Already Exists\n";
-			return ;
+			return 0;
 		}	
 		if(x<p->data)
 			if(p->left==NULL)
+			{
 				p->left=q;
+				p->height=1;
+				c++;
+				return c;
+			}
 			else
-				insert(p->left,x);
+			{
+				
+				int h= insert(p->left,x,c);
+				if(h>p->height)
+					p->height=h-c;
+				cout<<h<<" "<<c<<" "<<p->height<<endl;
+				 return h;
+			}
+
 		else 
 			if(p->right==NULL)
+			{
 				p->right=q;
+				p->height=1;
+				c++;
+				return c;
+			}
 			else
-				insert(p->right,x);
+			{
+				int h=insert(p->right,x,c);
+				if(h>p->height)
+					p->height=h-c;
+				cout<<h<<" "<<c<<" "<<p->height<<endl;
+				return h;
+			}
 	}
-
 }
 
 int node::search(node *p,int x)
@@ -73,7 +115,7 @@ void node::inorder(node *p)
 	if(p->left!=NULL)
 		inorder(p->left);
 
-	cout<<p->data<<" ";
+	cout<<p->data<<" "<<p->height<<endl;
 
 	if(p->right!=NULL)
 		inorder(p->right);
@@ -83,7 +125,7 @@ void node::inorder(node *p)
 void node::preorder(node *p)
 {
 
-	cout<<p->data<<" ";
+	cout<<p->data<<" "<<p->height<<endl;
 
 	if(p->left!=NULL)
 		preorder(p->left);
@@ -101,7 +143,7 @@ void node::postorder(node *p)
 	if(p->right!=NULL)
 		postorder(p->right);
 
-	cout<<p->data<<" ";
+	cout<<p->data<<" "<<p->height<<endl;
 
 }
 
@@ -257,7 +299,7 @@ int main()
 		{
 			case 1:
 				cin>>x;
-				node::insert(root,x);
+				node::insert1(x);
 				break;
 			case 2:
 				cin>>x;

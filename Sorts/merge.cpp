@@ -11,34 +11,34 @@ void merge(int a[],int i, int mid,int j)
 	int right[n2+2];
 
 	//copy elements into left and right arrays ..merge them and copy back into a
-	for(int k=1;k<=n1;k++)
-		left[k]=a[i+k-1];
-	for(int k=1;k<=n2;k++)
-		right[k]=a[mid+k];
+	for(int k=0;k<n1;k++)
+		left[k]=a[i+k];
+	for(int k=0;k<n2;k++)
+		right[k]=a[mid+1+k];
 
-	int p=1;
-	int q=1;
+	int p=0;
+	int q=0;
 
 	//required as if one array gets over while comparing something should be there at its end which must be maximum;
-	left[n1+1]=99999999;
-	right[n2+1]=99999999;
+	left[n1]=99999999;
+	right[n2]=99999999;
 
 	//merge
 	for(int k=i;k<=j;k++)
 	{
-	if(left[p]<right[q])
-	{
-		a[k]=left[p];
-		p++;
+		if(left[p]<right[q])
+		{
+			a[k]=left[p];
+			p++;
+		}
+		else
+		{
+			a[k]=right[q];
+			q++;
+		}
 	}
-	else
-	{
-		a[k]=right[q];
-		q++;
-	}
-	}
-	for(int i=1;i<=n;i++)
-	cout<<a[i]<<" ";
+	for(int i=0;i<n;i++)
+		cout<<a[i]<<" ";
 	cout<<endl;
 }
 
@@ -60,10 +60,10 @@ int main()
 {
 	cin>>n;
 	int a[n+1];
-	for(int i=1;i<=n;i++)
+	for(int i=0;i<n;i++)
 		cin>>a[i];
 
-	mergesort(a,1,n);
+	mergesort(a,0,n-1);
 	cout<<endl;
 	return 0;
 }
