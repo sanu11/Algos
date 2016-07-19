@@ -1,3 +1,0 @@
-1 Hutatma Pune Solapur  0600 400 125 50 300  
-2 Hutatma Solapur Pune  1800 400 125 50 300  
-3 Indrayani Mumbai Pune  0600 350 150 50 300  
