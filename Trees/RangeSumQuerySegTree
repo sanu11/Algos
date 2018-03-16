@@ -1,0 +1,93 @@
+#include <bits/stdc++.h>
+using namespace std;
+vector<int>segTree;
+int *arr;
+int n;
+int recursiveConstruct(int start,int end,int currentIndex){
+   int mid =  (start+end)/2;
+   //one node in a segment.
+   if(start==end){
+      segTree[currentIndex] = arr[start];
+  
+   }
+   else{                                                                      
+     segTree[currentIndex] = recursiveConstruct(start,mid,2*currentIndex+1) + recursiveConstruct(mid+1,end,2*currentIndex+2);	
+     
+   }
+   return segTree[currentIndex];
+
+}
+
+void constructSegTree(int n){
+    int height = ceil(log(n)/log(2));
+    int sizeOfTree = 2*pow(2,height)-1;
+    segTree.resize(sizeOfTree);
+    recursiveConstruct(0,n-1,0);
+    
+}
+
+void recursiveUpdate(int start, int end, int diff,int indexToBeUpdated,int currentIndex){
+ if(indexToBeUpdated < start || indexToBeUpdated > end)	
+   return;
+  
+ segTree[currentIndex]+=diff;
+ int mid = (start+end)/2;
+ if(start!=end){
+  recursiveUpdate(start,mid,diff,indexToBeUpdated,currentIndex*2+1);
+  recursiveUpdate(mid+1,end,diff,indexToBeUpdated,currentIndex*2+2);
+ }
+  
+}
+
+
+void updateSegTree(int index,int Newvalue){
+
+   int diff = Newvalue-arr[index];
+   arr[index]=Newvalue;
+   recursiveUpdate(0,n-1,diff,index,0);
+}
+
+int recursiveSum(int ss,int se,int qs,int qe, int si){
+
+//if this segemnt is part of req sum return it 
+if(ss>=qs && se<=qe)
+  return segTree[si];
+  
+  if(ss > qe || se < qs)
+  return 0;
+ int mid = (ss + se)/2;
+ return recursiveSum(ss,mid,qs,qe,si*2+1) + recursiveSum(mid+1,se,qs,qe,si*2+2);
+	
+}
+
+
+int sumOfRange(int qs,int qe)
+{
+ if(qs<0||qe>n-1)
+  return -1;
+ return recursiveSum(0,n-1,qs,qe,0);
+ 
+}
+int main()
+{
+ 
+    int q,c,x,y;
+    cin>>n>>q;;
+    
+    arr =  new int[n];
+   for(int i=0;i<n;i++)
+      cin>>arr[i];
+    constructSegTree(n);
+    while(q--){
+        cin>>c>>x>>y;
+        if(c==1)
+            updateSegTree(x,y);
+        else
+            cout<<sumOfRange(x,y)<<endl;
+        
+    }
+    
+    
+    
+    return 0;
+}
