@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+//added value to current index.
+void updateValues(int n, int index, int value,int bit[]){
+	index+=1;
+	while(index<=n){
+		bit[index]+=value;
+		//this gives us the last set bit in decimal. eg for 12 (1100) the last bit is at 2nd index whose decimal value is 4
+		//adding last set bit to index gives us the parent of index.
+		// in this way we update the parent as well. eg. for 2 parent will be 4. for 4 it will 8 and so on till n.
+		index += index & (-index);
+ 
+	}
+ 
+ 
+}
+ 
+ 
+void constructBIT(int n, int a[],int bit[]){
+	for(int i=0;i<n;i++)
+		updateValues(n,i,a[i],bit);
+ 
+}
+ 
+int getSum(int uptoIndex,int n,int bit[]){
+ 
+   int sum=0;
+   while(uptoIndex>=1){
+     sum+= bit[uptoIndex];
+     uptoIndex-= uptoIndex & (-uptoIndex);
+ 
+   }
+return sum;	
+}
+ 
+int main() {
+	int n,option,value,index,q,left,right;
+	cin>>q>>n;
+ 
+	int a[n],bit[n+1]={0};
+	for(int i=0;i<n;i++)
+		cin>>a[i];
+ 
+	constructBIT(n,a,bit);
+	for(int i=1;i<=n;i++)
+	cout<<bit[i]<<" ";
+	cout<<endl;
+	while(q--){
+	cin>>option;
+	if(option==1){
+	cin>>index>>value;
+	updateValues(n,index,value,bit);
+ 
+	}
+	else if(option==2){
+	cin>>left>>right;
+	cout<<(getSum(right,n,bit)-getSum(left,n,bit)+a[left-1])<<endl;
+	}
+	}
+	return 0;
+}
