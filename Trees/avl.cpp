@@ -2,9 +2,11 @@
 using namespace std;
 struct avl_node
 {
+
     int data;
     struct avl_node *left;
     struct avl_node *right;
+
 }*root;
  class avlTree
 {
