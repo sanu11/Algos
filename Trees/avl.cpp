@@ -16,7 +16,6 @@ struct avl_node
         avl_node *lr_rotation(avl_node *);
         avl_node *rl_rotation(avl_node *);
         void display(avl_node *, int);
-
         avl_node* balance(avl_node *);
         avl_node* insert(avl_node *, int );
         void inorder(avl_node *);
@@ -119,7 +118,6 @@ avl_node *avlTree::insert(avl_node *root, int value)
     }
     return root;
 }
-
 void avlTree::inorder(avl_node *tree)
 {
     if (tree == NULL)
@@ -128,7 +126,6 @@ void avlTree::inorder(avl_node *tree)
     cout<<tree->data<<"  ";
     inorder (tree->right);
 }
-
  void avlTree::display(avl_node *ptr, int level)
 {
     int i;
